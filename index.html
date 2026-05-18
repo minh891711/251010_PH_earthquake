@@ -1,1 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Mw 7.4 菲律賓南部地震分析報告</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary-color: #0f172a;
+            --accent-color: #e11d48;
+            --bg-light: #f8fafc;
+            --text-dark: #334155;
+            --text-main: #0f172a;
+            --border-color: #e2e8f0;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            max-width: 800px;
+            margin: 1.5rem auto 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .metadata span {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        nav {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        nav a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .content-section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 0.75rem;
+            padding-bottom: 0.2rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        blockquote {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 500px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .image-caption {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .interactive-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 6rem;
+            height: fit-content;
+        }
+
+        .card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .card li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer a {
+            color: #f8fafc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>2025 Mw 7.4 菲律賓南部地震分析報告</h1>
+        <p style="color: #cbd5e1; max-width: 700px; margin: 0 auto; text-align: center;">基於板塊隱沒帶構造環境與手繪震源機制球參數之科學解析專頁</p>
+        <div class="metadata">
+            <span><strong>發震時間：</strong> 2025年10月10日 09:43:59 (UTC/台灣時間)</span>
+            <span><strong>震央位置：</strong> 7.265°N, 126.755°E (達沃市東方外海)</span>
+            <span><strong>震源深度：</strong> 35–62 公里</span>
+            <span><strong>地震規模：</strong> Mw 7.4</span>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#background">地體構造背景</a>
+            <a href="#analysis">地震成因分析</a>
+            <a href="#focal-mechanism">震源機制球解讀</a>
+            <a href="#effects">震後效應與影響</a>
+            <a href="#interactive">互動分析工具</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-area">
+            
+            <section id="background" class="content-section">
+                <h2>一、地體構造背景</h2>
+                <h3>1.1 區域板塊構造</h3>
+                <p>菲律賓群島位於歐亞板塊（Eurasian Plate）、菲律賓海板塊（Philippine Sea Plate）及巽他板塊（Sunda Plate）三大板塊的交會帶，是全球構造活動最為複雜且地震活動最頻繁的地區之一。</p>
+                <p>民答那峨島（Mindanao）東側的<strong>菲律賓海溝（Philippine Trench）</strong>是此次地震的關鍵構造單元。在該海溝系統中，菲律賓海板塊向西北方向隱沒至菲律賓群島之下，形成活躍的俯衝帶環境，為逆斷層型地震的反覆發生提供了根本動力來源。</p>
+                
+                <h3>1.2 當地構造特徵</h3>
+                <p>根據 Rimando et al.（2020）及 Chen et al.（2020）的研究，民答那峨島東側地區的構造格局如下：</p>
+                <ul>
+                    <li><strong>菲律賓海溝（Philippine Trench）：</strong> 主要俯衝邊界，向西傾斜，菲律賓海板塊沿此界面向北北西方向插入民答那峨島之下。</li>
+                    <li><strong>隱沒帶介面（Subduction Interface）：</strong> 地震發生深度（35–62 km）對應於俯衝板塊與上覆板塊之間的介面或其附近區域，屬於中等深度地震。</li>
+                    <li><strong>Sangihe 殘存俯衝板塊：</strong> 部分學者認為，民答那峨島東側深部除菲律賓海板塊外，可能還存有一個古老的 Sangihe 殘存俯衝板塊，使得此地區的深部構造更為複雜。</li>
+                    <li><strong>歷史地震紀錄：</strong> 1900–2009 年間，菲律賓海溝沿線 M > 7.0 的地震頻率遠高於馬尼拉海溝，常發生規模 7 至 8 之間的強震。</li>
+                </ul>
+            </section>
+
+            <section id="analysis" class="content-section">
+                <h2>二、地震成因分析</h2>
+                <h3>2.1 發震機制</h3>
+                <p>本次地震的震源機制解（Focal Mechanism Solution）顯示為<strong>東西向擠壓的逆斷層型錯動（Reverse Fault / Thrust Fault）</strong>，此與菲律賓海溝的俯衝收斂動力完全吻合。具體分析如下：</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>參數</th>
+                            <th>數值 / 描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>錯動類型</strong></td>
+                            <td>逆斷層（Thrust/Reverse）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>主壓力軸方向</strong></td>
+                            <td>東西向（E–W）擠壓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>可能斷層面一</strong></td>
+                            <td>走向北北東（NNE），向東傾斜（高角度）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>可能斷層面二</strong></td>
+                            <td>走向北北西（NNW），向西傾斜（低角度）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>偏好斷層面</strong></td>
+                            <td><span style="color: var(--accent-color); font-weight: bold;">走向 NNW、低角度向西傾斜的面</span>（依震源深度與海溝位置判斷）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>震源深度</strong></td>
+                            <td>35–62 km</td>
+                        </tr>
+                        <tr>
+                            <td><strong>震源性質</strong></td>
+                            <td>隱沒帶介面附近的逆衝滑移</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 判斷偏好斷層面的依據</h3>
+                <p>依照以下兩項地質依據，研判此次地震較可能發生於<strong>低角度西傾斷層面</strong>，而非高角度東傾面：</p>
+                <ol>
+                    <li><strong>地理位置：</strong> 震央位於民答那峨島東側外海，緊鄰菲律賓海溝西緣，空間上與俯衝板塊介面高度吻合。</li>
+                    <li><strong>震源深度：</strong> 35–62 km 的深度範圍對應俯衝板塊交界面的深度範圍，符合板塊俯衝的幾何關係。</li>
+                </ol>
+                <p>因此，本次地震的成因研判為：<strong>菲律賓海板塊持續向西北方向俯衝，在隱沒帶介面附近積累的應力超過岩石破裂強度，沿低角度西傾逆衝斷層面發生突然滑動，釋放出 Mw 7.4 的地震能量。</strong></p>
+
+                <h3>2.3 與鄰近地震的比較</h3>
+                <ul>
+                    <li><strong>2025年9月30日 Mw 6.9 菲律賓中部地震：</strong> 成因不同，與走滑斷層系統有關，並非此次海溝逆衝機制。</li>
+                    <li><strong>2023年 Mw 7.6 民答那峨地震：</strong> 與菲律賓海溝活動較為相關，震後曾引發規模不一的海嘯警報。</li>
+                    <li><strong>1976年 M 8.0 Moro Gulf 地震：</strong> 最具災難性的歷史地震，造成約 8,000 人死亡，與 Cotabato 海溝活動相關，非菲律賓海溝。</li>
+                </ul>
+            </section>
+
+            <section id="focal-mechanism" class="content-section">
+                <h2>三、震源機制球解讀</h2>
+                <h3>3.1 機制球參數</h3>
+                <p>根據手繪震源機制球所記錄的參數：</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>參數</th>
+                            <th>數值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>走向（Strike）</strong></td>
+                            <td>174°</td>
+                        </tr>
+                        <tr>
+                            <td><strong>傾角（Dip）</strong></td>
+                            <td>39°</td>
+                        </tr>
+                        <tr>
+                            <td><strong>滑動角（Rake）</strong></td>
+                            <td>59°</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3.2 各參數物理意義</h3>
+                <p><strong>走向（Strike = 174°）：</strong> 斷層面在水平面上的延伸方向為北偏東 174°（接近正南偏東），即斷層走向幾乎呈<strong>南北向略偏東南</strong>，與菲律賓海溝走向大致平行。</p>
+                <p><strong>傾角（Dip = 39°）：</strong> 斷層面以 39° 的角度向下傾斜，屬於<strong>中低角度傾斜斷層</strong>。在俯衝帶中，低角度的逆衝斷層（megathrust）傾角通常介於 10°–40°，本次地震傾角 39° 落於此範圍上緣，為典型的俯衝帶逆衝斷層幾何。</p>
+                <p><strong>滑動角（Rake = 59°）：</strong> 滑動角 59° 表示錯動方向在斷層面上介於純逆斷層（Rake = 90°）與純左移斷層（Rake = 0°）之間，具體描述為：主體為逆衝（上盤相對上升），並帶有左旋走滑分量（left-lateral component）。</p>
+                <p>這種斜向滑移（oblique slip）型態在俯衝帶中相當常見，反映了板塊相對運動方向並非完全垂直於海溝走向，而是帶有一定斜向分量。</p>
+
+                <h3>3.3 震源機制球外觀解析（「沙灘球」）</h3>
+                <p>震源機制球的外觀顯示一個大型的<strong>深色（壓縮區）扇形區域</strong>佔據球面的大部分，其特徵為：深色區域（壓縮象限）約佔球面 60–70%，集中於球的上半部至右側；白色區域（張力象限）約佔球面 30–40%，分布於下方與左側。兩個節面（Nodal Planes）將壓縮區與張力區分隔。</p>
+                <p>這種外觀型態是<strong>逆斷層型地震</strong>的典型「沙灘球」圖案——深色區域（P 波初動為正，即壓縮）偏大，節面傾角相對平緩。</p>
+
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/minh891711/251010_PH_earthquake/main/photos/%E6%89%8B%E7%B9%AA%E9%9C%87%E6%BA%90%E6%A9%9F%E5%88%B6%E7%90%83.jpg" alt="手繪震源機制球">
+                    <div class="image-caption">
+                        圖：2025 Mw 7.4 菲律賓南部地震手繪震源機制球 (Strike 174°, Dip 39°, Rake 59°)<br>
+                        <a href="https://github.com/minh891711/251010_PH_earthquake/blob/main/photos/%E6%89%8B%E7%B9%AA%E9%9C%87%E6%BA%90%E6%A9%9F%E5%88%B6%E7%90%83.jpg" target="_blank" style="color: var(--primary-light); text-decoration: none; font-size: 0.85rem;">查看 GitHub 原始圖片網址</a>
+                    </div>
+                </div>
+
+                <h3>3.4 斷層錯動方式總結</h3>
+                blockquote>
+                    <strong>沿走向近南北（Strike 174°）、傾角 39° 的中低角度斷層面，以逆衝為主、帶有左旋走滑分量的斜向滑移。上盤（菲律賓群島板塊上覆地殼）相對向西北方向上衝，下盤（菲律賓海板塊）持續向西北方向俯衝，形成此次 Mw 7.4 的逆衝型地震事件。</strong>
+                </blockquote>
+            </section>
+
+            <section id="effects" class="content-section">
+                <h2>四、震後效應與影響</h2>
+                <p><strong>4.1 餘震分布：</strong> 主震發生後數小時內，主要餘震發生於主震<strong>南側</strong>，沿菲律賓海溝方向形成一條長約 100 公里的餘震帶，反映出破裂面向南方延伸的幾何形態。</p>
+                <p><strong>4.2 震度分布：</strong> 震央外海沿岸地區最大震度可達 MMI VII（修正麥卡利震度七級）；達沃市等地區觀測到 MMI V（五級） 的強烈地動。由於震央位於外海，沿海建築物品質不佳者受損嚴重。</p>
+                <p><strong>4.3 海嘯警報：</strong> 由於本次地震屬於逆斷層型破裂且規模達 7.4，菲律賓火山及地震研究所（PHIVOLCS）與太平洋海嘯中心均立即發布海嘯警報，警告附近地區可能出現 1–3 公尺高的海嘯波。民答那峨島東北方的 Tandag, Surigao del Sur 於主震後約 10:30 觀測到約 30 公分高的海嘯波。海嘯警報於同日下午 1:43 解除。</p>
+                <p><strong>4.4 網路社群震感回報：</strong> 透過 USGS 的「你感覺到地震了嗎」（DYFI）回報工具，可發現主要強震動皆位於島的東側海岸，主震發生後一小時內即收到超過 100 筆震感回報。</p>
+            </section>
+
+            <section id="interactive" class="content-section">
+                <h2>五、互動分析工具</h2>
+                <p>為了深入探索和繪製類似的震源機制球（Focal Mechanism / Beachball Diagram），您可以利用以下部署於 Hugging Face Spaces 的網頁互動式工具，自行輸入走向、傾角與滑動角，即時生成對應的沙灘球投影圖。</p>
+                
+                <div class="interactive-box">
+                    <h3>震源機制球線上繪製網頁</h3>
+                    <p>支援即時輸入 Strike, Dip, Rake 參數，動態呈現二維投影斷層滑移象限。</p>
+                    <a href="https://huggingface.co/spaces/minshu10/plot_focal_mechanism" target="_blank" class="btn">開啟互動網頁新視窗</a>
+                </div>
+
+                <div class="iframe-container">
+                    <iframe src="https://minshu10-plot-focal-mechanism.hf.space" title="Focal Mechanism Plotter Tool"></iframe>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="sidebar">
+            <div class="card">
+                <h4>資料來源與文獻</h4>
+                <ul>
+                    <li>• 台灣地震科學中心 (TEC)</li>
+                    <li>• 美國地質調查局 (USGS)</li>
+                    <li>• PHIVOLCS (SWIFT)</li>
+                    <li>• Rimando et al. (2020)</li>
+                    <li>• Chen et al. (2020)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>快速控制面板</h4>
+                <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">點擊下方按鈕可快速前往互動繪圖平台：</p>
+                <a href="https://huggingface.co/spaces/minshu10/plot_focal_mechanism" target="_blank" class="btn" style="width: 100%; text-align: center; padding: 0.5rem; font-size: 0.85rem; margin: 0;">前往 Hugging Face Space</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 菲律賓地震科學分析專題報告網頁 | 專頁維護：<a href="https://github.com/minh891711" target="_blank">minh891711</a></p>
+    </footer>
+
+    <script>
+        // 側邊欄與導覽列聯動動態高亮
+        const sections = document.querySelectorAll('.content-section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
